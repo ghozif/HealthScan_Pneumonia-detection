@@ -1,1 +1,2 @@
+backend/models/*.h5 filter=lfs diff=lfs merge=lfs -text
 backend/models/covid_pneumonia_resnet50.h5 filter=lfs diff=lfs merge=lfs -text

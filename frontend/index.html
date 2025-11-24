@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthScan - Pneumonia Detection</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                    <h1>HealthScan</h1>
+                </div>
+                <p class="subtitle">AI-Powered Pneumonia Detection</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="upload-section">
+                <div class="upload-card">
+                    <div class="upload-header">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h2>Upload Chest X-Ray Image</h2>
+                        <p>Upload a clear chest X-ray image for pneumonia analysis</p>
+                    </div>
+
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-content" id="uploadContent">
+                            <i class="fas fa-image upload-icon"></i>
+                            <p class="upload-text">Drag and drop your X-ray image here</p>
+                            <span class="upload-or">or</span>
+                            <button class="browse-btn" id="browseBtn">Browse Files</button>
+                            <p class="upload-info">Supported formats: PNG, JPG, JPEG (Max 16MB)</p>
+                        </div>
+                        <input type="file" id="fileInput" accept=".png,.jpg,.jpeg" hidden>
+                    </div>
+
+                    <div class="image-preview" id="imagePreview" style="display: none;">
+                        <img id="previewImage" alt="Uploaded image">
+                        <div class="image-actions">
+                            <button class="remove-btn" id="removeBtn">
+                                <i class="fas fa-times"></i> Remove
+                            </button>
+                            <button class="analyze-btn" id="analyzeBtn">
+                                <i class="fas fa-search"></i> Analyze Image
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="loading" id="loading" style="display: none;">
+                        <div class="spinner"></div>
+                        <p>Analyzing image... Please wait</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <div class="results-card">
+                    <div class="results-header">
+                        <i class="fas fa-chart-line"></i>
+                        <h2>Analysis Results</h2>
+                    </div>
+
+                    <div class="result-content">
+                        <div class="primary-result">
+                            <div class="result-status" id="resultStatus">
+                                <i class="result-icon" id="resultIcon"></i>
+                                <h3 id="resultText">Normal</h3>
+                            </div>
+                            <div class="confidence-score">
+                                <span class="confidence-label">Confidence</span>
+                                <span class="confidence-value" id="confidenceValue">95.2%</span>
+                            </div>
+                        </div>
+
+                        <div class="detailed-results">
+                            <div class="probability-bars">
+                                <div class="probability-item">
+                                    <div class="probability-header">
+                                        <span class="probability-label">Normal</span>
+                                        <span class="probability-value" id="normalProb">95.2%</span>
+                                    </div>
+                                    <div class="probability-bar">
+                                        <div class="probability-fill normal" id="normalBar"></div>
+                                    </div>
+                                </div>
+                                <div class="probability-item">
+                                    <div class="probability-header">
+                                        <span class="probability-label">Pneumonia</span>
+                                        <span class="probability-value" id="pneumoniaProb">4.8%</span>
+                                    </div>
+                                    <div class="probability-bar">
+                                        <div class="probability-fill pneumonia" id="pneumoniaBar"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="disclaimer">
+                            <i class="fas fa-info-circle"></i>
+                            <p><strong>Disclaimer:</strong> This AI analysis is for informational purposes only and should not replace professional medical diagnosis. Please consult with a healthcare professional for proper medical evaluation.</p>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="secondary-btn" id="newAnalysisBtn">
+                                <i class="fas fa-plus"></i> New Analysis
+                            </button>
+                            <button class="primary-btn" id="downloadBtn">
+                                <i class="fas fa-download"></i> Download Report
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="error-section" id="errorSection" style="display: none;">
+                <div class="error-card">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Analysis Error</h3>
+                    <p id="errorMessage">Something went wrong during the analysis.</p>
+                    <button class="retry-btn" id="retryBtn">Try Again</button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 HealthScan. AI-powered medical image analysis.</p>
+            <div class="footer-links">
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
+                <a href="#support">Support</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js?v=2024112402"></script>
+</body>
+</html>

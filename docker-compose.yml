@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: healthscan-backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend/models:/app/models:ro  # Mount models directory as read-only
+      - backend_uploads:/app/uploads     # Persistent volume for uploads
+    environment:
+      - FLASK_ENV=production
+      - PYTHONUNBUFFERED=1
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+    networks:
+      - healthscan-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: healthscan-frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - healthscan-network
+
+volumes:
+  backend_uploads:
+    driver: local
+
+networks:
+  healthscan-network:
+    driver: bridge

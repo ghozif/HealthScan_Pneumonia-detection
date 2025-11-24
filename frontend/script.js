@@ -1,5 +1,5 @@
 // Configuration
-const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = 'http://143.198.197.246:5000'; // ganti dengan IP server kamu
 
 // DOM Elements
 const uploadArea = document.getElementById('uploadArea');
